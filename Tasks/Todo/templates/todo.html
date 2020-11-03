@@ -1,10 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Todo Tasks</title>
+  <title>Todo Tasks</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+  <style>
+
+    .left {
+        width: 45%;
+        float: left;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .right {
+        background-color: #eee;
+        width: 45%;
+        float: right;
+        margin-right: 20px;
+      }
+
+      .modal-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      @media screen and (max-width: 950px)
+      {
+        .container {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .left, .right {
+          width: 100%
+        }
+      }
+  </style>
+
+  <div class="container">
+      <br>
+      <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+          New Task
+      </button>
+
+      <!-- The Modal -->
+      <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Create a new task</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              <form action="/" method="POST" class="was-validated">
+                {% csrf_token %}
+                <label>Title</label>
+                {{ form.title}}
+                  <br>
+                <label>Description</label>
+                {{ form.description}}
+
+                <!-- Modal footer -->
+                  <br>
+                  <input type="submit" class="btn btn-success" data-dismiss="modal" value="Create" name="Create Task">
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="left" style="margin-top: 40px;">
+        <center>
+          <h4>In Progress</h4>
+        </center>
+        {% for todo in todos %}
+          <!-- The Modal -->
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header" style="background-color: #eee;">
+                <h4 class="modal-title">{{todo.title}}</h4>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                {{ todo.description }}
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <p>{{todo.date_add}}</p>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">In Progress</button>
+              </div>
+
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="right" style="margin-top: 40px;">
+        <center>
+          <h3>Completed</h3>
+        </center>
+      </div>
+
+
+  </div>
 
 </body>
 </html>
