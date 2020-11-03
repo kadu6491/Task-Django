@@ -20,7 +20,6 @@
       }
 
       .right {
-        background-color: #eee;
         width: 45%;
         float: right;
         margin-right: 20px;
@@ -64,17 +63,17 @@
 
             <!-- Modal body -->
             <div class="modal-body">
-              <form action="/" method="POST" class="was-validated">
+              <form action="/" method="post" class="was-validated">
                 {% csrf_token %}
-                <label>Title</label>
-                {{ form.title}}
+                  <label>Title</label>
+                {{ form.title }}
                   <br>
-                <label>Description</label>
-                {{ form.description}}
+                  <label>Description</label>
+                {{ form.description }}
 
                 <!-- Modal footer -->
                   <br>
-                  <input type="submit" class="btn btn-success" data-dismiss="modal" value="Create" name="Create Task">
+                  <input type="submit" class="btn btn-success" value="Create">
 
               </form>
             </div>
@@ -86,6 +85,41 @@
           <h4>In Progress</h4>
         </center>
         {% for todo in todos %}
+        {% if todo.completed == False %}
+          <!-- The Modal -->
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header" style="background-color: #eee;">
+                <h4 class="modal-title">{{todo.title}}</h4>
+                <button  class="btn btn-light">Edit</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                {{ todo.description }}
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <p>{{todo.date_add}}</p>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">In Progress</button>
+              </div>
+
+            </div>
+          </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="right" style="margin-top: 40px;">
+        <center>
+          <h3>Completed</h3>
+        </center>
+
+        {% for todo in todos %}
+        {% if todo.completed == True %}
           <!-- The Modal -->
           <div class="modal-dialog">
             <div class="modal-content">
@@ -103,18 +137,14 @@
               <!-- Modal footer -->
               <div class="modal-footer">
                 <p>{{todo.date_add}}</p>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">In Progress</button>
+
+                <div class="btn btn-success" data-dismiss="modal">Completed</div>
               </div>
 
             </div>
           </div>
+        {% endif %}
         {% endfor %}
-      </div>
-
-      <div class="right" style="margin-top: 40px;">
-        <center>
-          <h3>Completed</h3>
-        </center>
       </div>
 
 

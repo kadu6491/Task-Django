@@ -6,9 +6,9 @@ from .models import *
 
 class PostTask(forms.ModelForm):
 
-    class Meta:
+    class Meta(object):
         model = Task
-        fields = ('title', 'description')
+        fields = '__all__'
         widgets = {
             'title': forms.TextInput(
                 attrs={

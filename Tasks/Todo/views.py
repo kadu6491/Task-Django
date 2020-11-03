@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import *
@@ -8,7 +8,7 @@ from .forms import *
 
 
 def index(request):
-    todos = Task.objects.all();
+    todos = Task.objects.all()
 
     form = PostTask()
 
@@ -16,6 +16,8 @@ def index(request):
         form = PostTask(request.POST)
         if form.is_valid():
             form.save()
+
+        return redirect('/')
 
     context = {'todos': todos, 'form': form}
     return render(request, 'todo.html', context)
