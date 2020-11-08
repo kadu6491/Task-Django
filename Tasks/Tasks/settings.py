@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 # Application definition
 
@@ -37,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Todo'
+    'crispy_forms',
+    'Todo',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -51,6 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Tasks.urls'
+
 
 TEMPLATES = [
     {
@@ -119,3 +124,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/login"

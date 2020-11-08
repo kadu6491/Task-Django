@@ -50,6 +50,11 @@
           New Task
       </button>
 
+      {% if user.is_authenticated %}
+        <h4>Hello {{user.username}} </h4>
+        <a href="/logout">logout</a>
+
+      {% endif %}
       <!-- The Modal -->
       <div class="modal" id="myModal">
         <div class="modal-dialog">
@@ -93,7 +98,8 @@
               <!-- Modal Header -->
               <div class="modal-header" style="background-color: #eee;">
                 <h4 class="modal-title">{{todo.title}}</h4>
-                <button  class="btn btn-light">Edit</button>
+                <a  class="btn btn-light" href="update/{{todo.id}}">Edit</a>
+
               </div>
 
               <!-- Modal body -->
@@ -127,6 +133,7 @@
               <!-- Modal Header -->
               <div class="modal-header" style="background-color: #eee;">
                 <h4 class="modal-title">{{todo.title}}</h4>
+                <a  class="btn btn-light" href="update/{{todo.id}}">Edit</a>
               </div>
 
               <!-- Modal body -->
