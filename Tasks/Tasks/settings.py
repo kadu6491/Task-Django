@@ -26,7 +26,7 @@ SECRET_KEY = '*cq_2z!p5oe7!^v(-puu&m8x45#tn#=40!rlx!4-wv8e3hk1t^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://kofitask.herokuapp.com', 'http://127.0.0.1']
+ALLOWED_HOSTS = ['https://kofitask.herokuapp.com', '127.0.0.1']
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
@@ -130,5 +130,10 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login"
