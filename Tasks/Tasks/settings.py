@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '*cq_2z!p5oe7!^v(-puu&m8x45#tn#=40!rlx!4-wv8e3hk1t^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://kofitask.herokuapp.com', '127.0.0.1']
 
