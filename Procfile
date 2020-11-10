@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT Tasks:app
+web: gunicorn Tasks.wsgi
