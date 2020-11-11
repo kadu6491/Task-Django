@@ -137,6 +137,6 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/login"
+# LOGOUT_REDIRECT_URL = "accounts/login"
 
 django_on_heroku.settings(locals())
